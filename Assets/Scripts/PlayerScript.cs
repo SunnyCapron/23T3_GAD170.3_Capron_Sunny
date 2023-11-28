@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private float yaw = 0.0f;
     private float pitch = 0.0f;
 
+    public GameObject quitButton;
+    public GameObject resumeButton;
+
     public CharacterController controller;
     private Vector3 velocity;
 
@@ -77,5 +80,27 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply sprinting effect
         controller.Move(move * currentSpeed * Time.deltaTime + velocity * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            quitButton.SetActive(true);
+            resumeButton.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+        }
+    }
+
+    public void ResumeGame()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        quitButton.SetActive(false);
+        resumeButton.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
