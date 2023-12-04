@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class DeathZone : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    public int sceneToload;
+        public void OnTriggerEnter(Collider other)
     {
         // Check if the collider belongs to the player
         if (other.CompareTag("Player"))
@@ -13,7 +14,7 @@ public class DeathZone : MonoBehaviour
             Cursor.visible = true;
 
             // Reload the title scene
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(sceneToload);
         }
     }
 }
